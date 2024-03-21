@@ -1,9 +1,11 @@
 const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true
-})
+
 module.exports = {
   chainWebpack: config => {
+    defineConfig({
+     base:  '/deploying-MyPortfolio',
+     transpileDependencies: true
+   }),
     config.module
       .rule('pdf')
       .test(/\.(pdf)(\?.*)?$/)
@@ -13,5 +15,6 @@ module.exports = {
         name: 'assets/[name].[ext]'
       })
       .end();
-  }
+  },
+  publicPath: process.env.NODE_ENV === "production" ? "/MyPortfolio/" : "/",
 };

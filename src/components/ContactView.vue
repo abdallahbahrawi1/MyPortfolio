@@ -1,29 +1,45 @@
 <template>
   <section class="contact-section">
     <button @click="closeContactForm" class="close-button">×</button>
-    <form>
+    <form ref="form" @submit.prevent="sendEmail">
       <h3>GET IN TOUCH</h3>
-      <input type="text" id="name" placeholder="Your name" required>
-      <input type="email" id="email" placeholder="Email id" required>
-      <input type="text" id="phone" placeholder="Phone no." required>
-      <textarea id="message" rows="4" placeholder="How can i help you?"></textarea>
-      <button type="submit">Send</button>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+      <input type="text" id="phone" name="phone" placeholder="Phone no." required>
+      <textarea id="message" rows="4" name="message" placeholder="How can i help you?"></textarea>
+      <button type="submit" value="Send">Send</button>
     </form>
   </section>
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+
 export default {
-  props: {
-    closeContactForm: {
-      type: Function,
-      required: true
+  methods: {
+    sendEmail(){
+      emailjs
+        .sendForm('service_zv9zy2w', 'template_2mmhvnu', this.$refs.form, {
+          publicKey: 'zSHaBACm2bv15S1iX',
+        })
+        .then(
+          () => {
+            console.log('SUCCESS!');
+            alert("Email Sent!!")
+          },
+          (error) => {
+            console.log('FAILED...', error.text);
+          },
+        );
+    },
+    closeContactForm() {
+      this.$emit('close');
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .contact-section {
   position: relative; 
   display: inline-block; 
@@ -31,7 +47,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,  -50%);
+  transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
@@ -51,7 +67,7 @@ export default {
 }
 
 .close-button:hover {
-    color: #555; /* Change color on hover if desired */
+    color: #555;
 }
 
 form {
@@ -77,7 +93,7 @@ form input, form textarea {
   padding: 20px;
   outline: none;
   background: #f5f5f5;
-  font-size: 16x;
+  font-size: 16px;
 }
 
 form button {

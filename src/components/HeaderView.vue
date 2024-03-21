@@ -1,7 +1,7 @@
 <template>
     <header>
       <div class="home-content">
-        <div class="content">
+        <div class="home--content">
             <h5>Hello I'm</h5>
             <h1>Abdallah Bahrawi</h1>
             <h5 class="text-light">Fullstack Developer</h5>
@@ -21,17 +21,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .home-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
 }
 
-.content {
+.home--content {
   text-align: center;
   color: white;
   padding: 20px;

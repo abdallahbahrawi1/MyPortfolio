@@ -1,14 +1,11 @@
 <template>
-  <!-- <NavbarView /> -->
   <router-view/>
 </template>
 
 <script>
 
 export default {
-  components: {
-    // NavbarView
-  }
+  components: {}
 };
 </script>
 
@@ -16,13 +13,20 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  list-style: none;
+  text-decoration: none;
 }
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+section > h2,
+section h5 {
   text-align: center;
-  color: #2c3e50;
-} */
+  color:rgba(255, 255, 255, 0.6);
+}
+
+section > h2{
+  color: #4db5ff;
+  margin-bottom: 3rem;
+}
 </style>

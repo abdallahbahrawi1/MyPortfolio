@@ -46,13 +46,13 @@
       </div>
     </div>
   </section>
-  <transition name="fade">
-    <ContactView v-if="showContactForm" :closeContactForm="closeContactForm" />
+  <transition name="fade-contact-view">
+    <ContactView v-if="showContactForm" @close="closeContactForm"/>
   </transition>
 </template>
 
 <script lang="ts">
-import NavbarView from '../components/NavbarView.vue';
+import NavbarView from '../components/Nav/NavbarView.vue';
 import ContactView from '../components/ContactView.vue';
 import { defineComponent } from 'vue';
 
@@ -73,12 +73,12 @@ export default defineComponent({
     },
     closeContactForm() {
       this.showContactForm = false;
-    },
+    }
   }
 });
 </script>
 
-<style>
+<style scoped>
 
 .about-section {
   height: 100vh; 
@@ -96,7 +96,6 @@ export default defineComponent({
   margin: 0 auto;
   margin-top: 100px;
 }
-
 
 .about-titles{
   display: flex;
@@ -175,11 +174,14 @@ export default defineComponent({
   font-size: 16px;
   margin-bottom: 1rem;
 }
-.fade-enter-active, .fade-leave-active {
+.fade-contact-view-enter-active, .fade-contact-view-leave-active {
   transition: opacity 1s;
 }
-.fade-enter, .fade-leave-to {
+.fade-contact-view-enter-from, .fade-contact-view-leave-to{
   opacity: 0;
+}
+.fade-contact-view-enter-to, .fade-contact-view-leave-from {
+  opacity: 1;
 }
 
 </style>

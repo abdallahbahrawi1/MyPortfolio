@@ -2,7 +2,7 @@
   <nav>
     <div class="left">
       <span class="icon" @mouseover="showSecondIcon = true" @mouseleave="showSecondIcon = false">
-        <transition name="fade">
+        <transition name="nav-fade">
           <i class="fas fa-user" v-if="!showSecondIcon"></i>
           <i class="fas fa-smile" v-else></i>
         </transition>
@@ -18,16 +18,16 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
   data() {
-    return {
-      showSecondIcon: false
-    };
+    const showSecondIcon = ref(false)
+    return {showSecondIcon}
   }
 }
 </script>
 
-<style>
+<style scoped>
 
 nav {
   display: flex;
@@ -65,18 +65,17 @@ nav a.router-link-exact-active {
   width: 24px;
   font-size: 24px; 
   color: #007bff;
-
 }
 
-.fade-enter-active {
-  transition: opacity 1s ease-in-out; 
+.nav-fade-enter-active {
+  transition: opacity 1.5s ease; 
 }
 
-.fade-enter-from {
+.nav-fade-enter-from {
   opacity: 0;
 }
 
-.fade-enter-to {
+.nav-fade-enter-to {
   opacity: 1;
 }
 
@@ -92,4 +91,5 @@ nav a.router-link-exact-active {
 .nav-link:hover {
   opacity: 0.5; 
 }
+
 </style>
